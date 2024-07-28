@@ -7,7 +7,7 @@ Aplicación de agenda de contactos desarrollada en Java 21 utilizando Spring Boo
 ## Características
 
 - **Registro y autenticación de usuarios:** Implementado con Spring Security.
-- **Seguridad de contraseñas:** Se utilizó BCrypt para asegurar y encriptar las contraseñas de los usuarios, para almacenar de forma segura las contraseñas en la base de datos.
+- **Seguridad de contraseñas:** Se utilizó BCrypt para encriptar las contraseñas de los usuarios, y almacenarlas de forma segura en la base de datos.
 - **Gestión de contactos:** Cada usuario autenticado puede añadir, editar y eliminar sus contactos personales.
 - **Eliminación de cuenta:** Cada usuario puede eliminar su cuenta si lo desea, lo cual también elimina todos los contactos registrados en su cuenta.
 - **Interfaz de usuario:** Se utilizo Bootstrap para los estilos, y Thymeleaf para generar vistas dinamicas.
