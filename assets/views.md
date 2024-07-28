@@ -9,7 +9,7 @@
 ![Screenshot 3](/assets/images/reg2.png)
 
 ## 3. Principal (Lista de contactos)
-![Screenshot 3](/assets/images/lista_contactos.png)
+![Screenshot 3](/assets/images/listacontactos.png)
 
 ## 4. Registro nuevo contacto
 ![Screenshot 3](/assets/images/agg_contacto.png)
