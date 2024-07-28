@@ -11,7 +11,7 @@ Aplicación de agenda de contactos desarrollada en Java 21 utilizando Spring Boo
 - **Gestión de contactos:** Cada usuario autenticado puede añadir, editar y eliminar sus contactos personales.
 - **Eliminación de cuenta:** Cada usuario puede eliminar su cuenta si lo desea, lo cual también elimina todos los contactos registrados en su cuenta.
 - **Interfaz de usuario:** Se utilizo Bootstrap para los estilos, y Thymeleaf para generar vistas dinamicas.
-- **Persistencia de datos:** Se utilizo Hibernate, y una base de datos MySQL para almacenar información de usuarios y contactos.
+- **Persistencia de datos:** Se utilizo Hibernate, y una base de datos MySQL.
 
 ### [Pantallas de la aplicacion](https://github.com/FrankSkep/Agenda/blob/main/assets/views.md)
 
