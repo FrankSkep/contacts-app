@@ -13,8 +13,7 @@ Aplicación de agenda de contactos desarrollada en Java 21 utilizando Spring Boo
 - **Interfaz de usuario:** Se utilizo Bootstrap para los estilos, y Thymeleaf para generar vistas dinamicas.
 - **Persistencia de datos:** Se utilizo el ORM Hibernate, y una base de datos MySQL para almacenar información de usuarios y contactos.
 
-## Pantallas de la aplicacion
-### [Imagenes de la aplicacion](https://github.com/FrankSkep/Agenda/blob/main/assets/views.md)
+## [Pantallas de la aplicacion](https://github.com/FrankSkep/Agenda/blob/main/assets/views.md)
 
 ## Tecnologías Utilizadas
 
