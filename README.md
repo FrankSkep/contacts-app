@@ -14,7 +14,7 @@ Aplicación de agenda de contactos desarrollada en Java 21 utilizando Spring Boo
 - **Persistencia de datos:** Se utilizo el ORM Hibernate, y una base de datos MySQL para almacenar información de usuarios y contactos.
 
 ## Pantallas de la aplicacion
-[vistas](https://github.com/FrankSkep/Agenda/blob/main/assets/views.md)
+### [Imagenes de la aplicacion](https://github.com/FrankSkep/Agenda/blob/main/assets/views.md)
 
 ## Tecnologías Utilizadas
 
