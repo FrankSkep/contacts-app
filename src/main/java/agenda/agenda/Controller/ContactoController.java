@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ContactoController {
@@ -76,7 +79,7 @@ public class ContactoController {
     }
 
     // Direccionamiento al formulario para editar un contacto
-    @GetMapping("/{id}/editar")
+    @GetMapping("/editar/{id}")
     public String mostrarFormularioEdicion(@PathVariable Integer id, Model modelo) {
         Contacto contacto = contactoRepo.getReferenceById(id);
         modelo.addAttribute("contacto", contacto);
@@ -84,8 +87,9 @@ public class ContactoController {
     }
 
     // Actualiza los datos del contacto
-    @PostMapping("/{id}/editar")
-    public String actualizarContacto(@PathVariable Integer id, @Validated Contacto contacto, BindingResult bindingRes, RedirectAttributes redirect, Model modelo) {
+    @PutMapping("/editar/{id}")
+    public String actualizarContacto(@PathVariable Integer id, @Validated Contacto contacto, BindingResult bindingRes,
+            RedirectAttributes redirect, Model modelo) {
 
         Contacto contactoDB = contactoRepo.getReferenceById(id);
 
@@ -105,10 +109,9 @@ public class ContactoController {
     }
 
     // Elimina un contacto
-    @PostMapping("/{id}/eliminar")
+    @DeleteMapping("/eliminar/{id}")
     public String eliminarContacto(@PathVariable Integer id, RedirectAttributes redirect) {
-        Contacto contacto = contactoRepo.getReferenceById(id);
-        contactoRepo.delete(contacto);
+        contactoRepo.deleteById(id);
         redirect.addFlashAttribute("msgExito", "El contacto ha sido eliminado correctamente");
         return "redirect:/contactos";
     }
