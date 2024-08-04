@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 public interface UsuarioService extends UserDetailsService {
 
+    public Usuario findByEmail(String username);
+
     public Usuario guardarUsuario(UsuarioRegDTO registroDTO);
+
     public boolean eliminarUsuario(@PathVariable Integer id);
 }

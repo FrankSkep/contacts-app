@@ -2,9 +2,8 @@ package agenda.agenda.Controller;
 
 import agenda.agenda.Entities.Contacto;
 import agenda.agenda.Entities.Usuario;
-import agenda.agenda.Repository.ContactoRepository;
-import agenda.agenda.Repository.UsuarioRepository;
 import agenda.agenda.Service.ContactoServiceImpl;
+import agenda.agenda.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,10 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ContactoController {
 
     @Autowired
-    private ContactoRepository contactoRepo;
-
-    @Autowired
-    private UsuarioRepository usuarioRepo;
+    private UsuarioService usuarioService;
 
     @Autowired
     private ContactoServiceImpl contactoService;
@@ -44,7 +40,7 @@ public class ContactoController {
 
         String email = userDetails.getUsername();
 
-        Usuario usuario = usuarioRepo.findByEmail(email);
+        Usuario usuario = usuarioService.findByEmail(email);
         List<Contacto> contactos = contactoService.findByUsuario(usuario);
         modelo.addAttribute("username", email);
         modelo.addAttribute("contactos", contactos);
@@ -70,19 +66,20 @@ public class ContactoController {
             return "nuevo"; // Retorna al formulario si hay errores
         }
 
-        // Obtener el usuario autenticado desde el UserDetails
-        Usuario usuario = usuarioRepo.findByEmail(userDetails.getUsername());
+        Object result = contactoService.guardarContacto(userDetails.getUsername(), contacto);
+        if (result instanceof Contacto) {
+            redirectAttributes.addFlashAttribute("msgExito", "Contacto guardado exitosamente");
+        } else {
+            redirectAttributes.addFlashAttribute("msgError", result);
+        }
 
-        contacto.setUsuario(usuario); // Asocia el contacto con el usuario autenticado
-        contactoRepo.save(contacto); // Guarda el contacto en la base de datos
-        redirectAttributes.addFlashAttribute("msgExito", "Contacto guardado exitosamente");
         return "redirect:/contactos";
     }
 
     // Direccionamiento al formulario para editar un contacto
     @GetMapping("/editar/{id}")
     public String mostrarFormularioEdicion(@PathVariable Integer id, Model modelo) {
-        Contacto contacto = contactoRepo.getReferenceById(id);
+        Contacto contacto = contactoService.obtenerPorID(id);
         modelo.addAttribute("contacto", contacto);
         return "nuevo";
     }
@@ -92,27 +89,25 @@ public class ContactoController {
     public String actualizarContacto(@PathVariable Integer id, @Validated Contacto contacto, BindingResult bindingRes,
             RedirectAttributes redirect, Model modelo) {
 
-        Contacto contactoDB = contactoRepo.getReferenceById(id);
-
         if (bindingRes.hasErrors()) {
             modelo.addAttribute("contacto", contacto);
             return "nuevo";
         }
 
-        contactoDB.setNombre(contacto.getNombre());
-        contactoDB.setCelular(contacto.getCelular());
-        contactoDB.setEmail(contacto.getEmail());
-        contactoDB.setFechaNacimiento(contacto.getFechaNacimiento());
+        Object result = contactoService.actualizarContacto(id, contacto);
+        if (result instanceof Contacto) {
+            redirect.addFlashAttribute("msgExito", "El contacto ha sido actualizado correctamente");
+        } else {
+            redirect.addFlashAttribute("msgError", result);
+        }
 
-        contactoRepo.save(contactoDB);
-        redirect.addFlashAttribute("msgExito", "El contacto ha sido actualizado correctamente");
         return "redirect:/contactos";
     }
 
     // Elimina un contacto
     @DeleteMapping("/eliminar/{id}")
     public String eliminarContacto(@PathVariable Integer id, RedirectAttributes redirect) {
-        contactoRepo.deleteById(id);
+        contactoService.eliminarContacto(id);
         redirect.addFlashAttribute("msgExito", "El contacto ha sido eliminado correctamente");
         return "redirect:/contactos";
     }

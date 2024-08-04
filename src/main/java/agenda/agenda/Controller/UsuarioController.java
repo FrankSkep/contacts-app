@@ -17,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class UsuarioController {
 
     @Autowired
-    private UsuarioRepository usuarioRepo;
     private UsuarioService usuarioServicio;
 
     public UsuarioController(UsuarioService usuarioServicio) {
@@ -32,7 +31,7 @@ public class UsuarioController {
             return "redirect:/login";
         }
 
-        Usuario usuario = usuarioRepo.findByEmail(userDetails.getUsername());
+        Usuario usuario = usuarioServicio.findByEmail(userDetails.getUsername());
 
         if (usuario == null) {
             // Manejo del caso en que no se encuentra el usuario

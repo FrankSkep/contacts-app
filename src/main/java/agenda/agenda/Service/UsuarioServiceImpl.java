@@ -25,7 +25,11 @@ public class UsuarioServiceImpl implements UsuarioService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    // Implementacion metodo para guardar un usuario nuevo
+    @Override
+    public Usuario findByEmail(String username) {
+        return userRepo.findByEmail(username);
+    }
+
     @Override
     public Usuario guardarUsuario(UsuarioRegDTO registroDTO) {
         // Verificar si ya existe un usuario con el mismo email
