@@ -1,4 +1,4 @@
-package agenda.agenda.Security;
+package agenda.agenda.Configuration;
 
 import agenda.agenda.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +41,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
                 .requestMatchers("/registro**", "/js/**", "/css/**", "/img/**").permitAll()
-                .requestMatchers("/nuevo").authenticated()
+//                .requestMatchers("/nuevo").authenticated()
                 .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

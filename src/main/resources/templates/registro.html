@@ -23,26 +23,26 @@
                         <p th:text="${msgError}">Mensaje de error</p>
                     </div>
 
-                    <h1 class="mb-4 text-center">Registro de Usuario</h1>
+                    <h1 class="mb-4 text-center">Registrate</h1>
                     <form th:action="@{/registro}" method="POST" th:object="${usuario}">
                         <div class="mb-3">
                             <label class="form-label" for="nombre">Nombre:</label>
-                            <input id="nombre" type="text" class="form-control" th:field="*{nombre}" required autofocus>
+                            <input id="nombre" type="text" class="form-control" th:field="*{nombre}" placeholder="Ingrese su nombre" required autofocus>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label" for="apellido">Apellido:</label>
-                            <input id="apellido" type="text" class="form-control" th:field="*{apellido}" required>
+                            <input id="apellido" type="text" class="form-control" th:field="*{apellido}" placeholder="Ingrese sus apellidos" required>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label" for="email">Email:</label>
-                            <input id="email" type="email" class="form-control" th:field="*{email}" required>
+                            <input id="email" type="email" class="form-control" th:field="*{email}" placeholder="Ingrese su email" required>
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label" for="password">Contraseña:</label>
-                            <input id="password" type="password" class="form-control" th:field="*{password}" required>
+                            <input id="password" type="password" class="form-control" th:field="*{password}" placeholder="Ingrese una contraseña" required>
                         </div>
 
                         <div class="d-grid gap-2">
