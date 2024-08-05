@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.Collections;
-import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
@@ -53,7 +52,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public boolean eliminarUsuario(@PathVariable Integer id) {
+    public boolean eliminarUsuario(Integer id) {
         Usuario usuario = userRepo.getReferenceById(id);
 
         if (usuario == null) {

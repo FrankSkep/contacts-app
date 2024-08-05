@@ -1,7 +1,6 @@
 package agenda.agenda.Controller;
 
 import agenda.agenda.Entities.Usuario;
-import agenda.agenda.Repository.UsuarioRepository;
 import agenda.agenda.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -11,9 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
+@RequestMapping("/profile")
 public class UsuarioController {
 
     @Autowired
@@ -25,7 +26,7 @@ public class UsuarioController {
     }
 
     // Muestra vista de informacion de la cuenta
-    @GetMapping({"/profile"})
+    @GetMapping
     public String mostrarPerfil(@AuthenticationPrincipal UserDetails userDetails, Model modelo) {
         if (userDetails == null) {
             return "redirect:/login";
@@ -42,16 +43,21 @@ public class UsuarioController {
         return "profile";
     }
 
-    @DeleteMapping("/{id}/eliminarCuenta")
-    public String eliminarCuenta(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
+    @DeleteMapping("/eliminarCuenta/{id}")
+    public String eliminarCuenta(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes, @AuthenticationPrincipal UserDetails userDetails) {
 
-        try {
-            usuarioServicio.eliminarUsuario(id);
-            redirectAttributes.addFlashAttribute("msgExito", "Usuario eliminado exitosamente");
-            return "redirect:/logout";
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("msgError", e.getMessage());
-            return "redirect:/registro?error";
+        Integer idPropietario = usuarioServicio.findByEmail(userDetails.getUsername()).getId();
+
+        if (idPropietario.equals(id)) {
+            if (usuarioServicio.eliminarUsuario(id)) {
+                redirectAttributes.addFlashAttribute("msgExito", "Usuario eliminado exitosamente");
+                return "redirect:/logout";
+            } else {
+                redirectAttributes.addFlashAttribute("msgError", "ID No existente");
+            }
+        } else {
+            redirectAttributes.addFlashAttribute("msgError", "No eres propietario de la cuenta con id " + id);
         }
+        return "redirect:/profile";
     }
 }
