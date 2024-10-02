@@ -17,11 +17,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/profile")
 public class UsuarioController {
 
-    @Autowired
-    private UsuarioService usuarioServicio;
+    private final UsuarioService usuarioServicio;
 
     public UsuarioController(UsuarioService usuarioServicio) {
-        super();
         this.usuarioServicio = usuarioServicio;
     }
 
@@ -31,14 +29,11 @@ public class UsuarioController {
         if (userDetails == null) {
             return "redirect:/login";
         }
-
         Usuario usuario = usuarioServicio.findByEmail(userDetails.getUsername());
 
         if (usuario == null) {
-            // Manejo del caso en que no se encuentra el usuario
             return "redirect:/error";
         }
-
         modelo.addAttribute("usuario", usuario);
         return "profile";
     }
@@ -49,11 +44,12 @@ public class UsuarioController {
         Integer idPropietario = usuarioServicio.findByEmail(userDetails.getUsername()).getId();
 
         if (idPropietario.equals(id)) {
-            if (usuarioServicio.eliminarUsuario(id)) {
+            try {
+                usuarioServicio.eliminarUsuario(id);
                 redirectAttributes.addFlashAttribute("msgExito", "Usuario eliminado exitosamente");
                 return "redirect:/logout";
-            } else {
-                redirectAttributes.addFlashAttribute("msgError", "ID No existente");
+            } catch (IllegalArgumentException e) {
+                redirectAttributes.addFlashAttribute("msgError", e.getMessage());
             }
         } else {
             redirectAttributes.addFlashAttribute("msgError", "No eres propietario de la cuenta con id " + id);

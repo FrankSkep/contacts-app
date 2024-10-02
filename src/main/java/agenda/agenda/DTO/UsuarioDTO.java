@@ -1,6 +1,6 @@
 package agenda.agenda.DTO;
 
-public class UsuarioRegDTO {
+public class UsuarioDTO {
 
     private Integer id;
     private String nombre;
@@ -8,7 +8,7 @@ public class UsuarioRegDTO {
     private String email;
     private String password;
 
-    public UsuarioRegDTO(Integer id, String nombre, String apelido, String email, String password) {
+    public UsuarioDTO(Integer id, String nombre, String apelido, String email, String password) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apelido;
@@ -16,16 +16,16 @@ public class UsuarioRegDTO {
         this.password = password;
     }
 
-    public UsuarioRegDTO(String nombre, String apelido, String email, String password) {
+    public UsuarioDTO(String nombre, String apelido, String email, String password) {
         this.nombre = nombre;
         this.apellido = apelido;
         this.email = email;
         this.password = password;
     }
     
-    public UsuarioRegDTO() {}
+    public UsuarioDTO() {}
 
-    public UsuarioRegDTO(String email) {
+    public UsuarioDTO(String email) {
         this.email = email;
     }
     

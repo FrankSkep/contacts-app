@@ -1,6 +1,6 @@
 package agenda.agenda.Controller;
 
-import agenda.agenda.DTO.UsuarioRegDTO;
+import agenda.agenda.DTO.UsuarioDTO;
 import agenda.agenda.Service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +25,8 @@ public class AuthController {
     }
 
     @ModelAttribute("usuario")
-    public UsuarioRegDTO retornarNuevoUsuarioRegDTO() {
-        return new UsuarioRegDTO();
+    public UsuarioDTO retornarNuevoUsuarioRegDTO() {
+        return new UsuarioDTO();
     }
 
     // Maneja la visualización del formulario de registro
@@ -38,7 +38,7 @@ public class AuthController {
     // Maneja el registro de usuario
     @PostMapping("/registro")
     public String registrarCuentaUsuario(
-            @ModelAttribute("usuario") @Valid UsuarioRegDTO regDTO,
+            @ModelAttribute("usuario") @Valid UsuarioDTO regDTO,
             BindingResult bindingResult,
             RedirectAttributes redirectAttributes) {
 

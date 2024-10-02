@@ -1,9 +1,10 @@
-package agenda.agenda.Service;
+package agenda.agenda.Service.Impl;
 
 import agenda.agenda.Entities.Contacto;
 import agenda.agenda.Entities.Usuario;
 import agenda.agenda.Repository.ContactoRepository;
 import agenda.agenda.Repository.UsuarioRepository;
+import agenda.agenda.Service.ContactoService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

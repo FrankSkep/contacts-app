@@ -1,9 +1,9 @@
-package agenda.agenda.Service;
+package agenda.agenda.Service.Impl;
 
 import agenda.agenda.DTO.UsuarioDTO;
 import agenda.agenda.Entities.Usuario;
 import agenda.agenda.Repository.UsuarioRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import agenda.agenda.Service.UsuarioService;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

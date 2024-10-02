@@ -2,9 +2,8 @@ package agenda.agenda.Controller;
 
 import agenda.agenda.Entities.Contacto;
 import agenda.agenda.Entities.Usuario;
-import agenda.agenda.Service.ContactoServiceImpl;
+import agenda.agenda.Service.ContactoService;
 import agenda.agenda.Service.UsuarioService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -16,7 +15,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import java.util.List;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,11 +26,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/contactos")
 public class ContactoController {
 
-    @Autowired
-    private UsuarioService usuarioService;
+    private final UsuarioService usuarioService;
+    private final ContactoService contactoService;
 
-    @Autowired
-    private ContactoServiceImpl contactoService;
+    public ContactoController(UsuarioService usuarioService, ContactoService contactoService) {
+        this.usuarioService = usuarioService;
+        this.contactoService = contactoService;
+    }
+
+    @GetMapping({"/"})
+    public String redirigirARutaContactos() {
+        return "redirect:/contactos";
+    }
 
     // Obtencion de todos los contactos
     @GetMapping
@@ -87,7 +95,7 @@ public class ContactoController {
     // Actualiza los datos del contacto
     @PutMapping("/editar/{id}")
     public String actualizarContacto(@PathVariable Integer id, @Validated Contacto contacto, BindingResult bindingRes,
-            RedirectAttributes redirect, Model modelo) {
+                                     RedirectAttributes redirect, Model modelo) {
 
         if (bindingRes.hasErrors()) {
             modelo.addAttribute("contacto", contacto);
