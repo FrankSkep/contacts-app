@@ -1,4 +1,4 @@
-package agenda.agenda;
+package com.fran.contacts;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

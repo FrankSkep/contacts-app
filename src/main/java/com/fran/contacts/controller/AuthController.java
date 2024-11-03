@@ -1,7 +1,7 @@
-package agenda.agenda.Controller;
+package com.fran.contacts.controller;
 
-import agenda.agenda.DTO.UsuarioDTO;
-import agenda.agenda.Service.UsuarioService;
+import com.fran.contacts.dto.RegisterRequest;
+import com.fran.contacts.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -25,8 +25,8 @@ public class AuthController {
     }
 
     @ModelAttribute("usuario")
-    public UsuarioDTO retornarNuevoUsuarioRegDTO() {
-        return new UsuarioDTO();
+    public RegisterRequest retornarNuevoUsuarioRegDTO() {
+        return new RegisterRequest();
     }
 
     // Maneja la visualización del formulario de registro
@@ -38,7 +38,7 @@ public class AuthController {
     // Maneja el registro de usuario
     @PostMapping("/registro")
     public String registrarCuentaUsuario(
-            @ModelAttribute("usuario") @Valid UsuarioDTO regDTO,
+            @ModelAttribute("usuario") @Valid RegisterRequest regDTO,
             BindingResult bindingResult,
             RedirectAttributes redirectAttributes) {
 
@@ -51,7 +51,8 @@ public class AuthController {
             usuarioServicio.guardarUsuario(regDTO);
             redirectAttributes.addFlashAttribute("msgExito", "Usuario registrado exitosamente");
             return "redirect:/registro?exito";
-        } catch (IllegalArgumentException e) {
+        } catch (
+                IllegalArgumentException e) {
             redirectAttributes.addFlashAttribute("msgError", e.getMessage());
             return "redirect:/registro?error";
         }

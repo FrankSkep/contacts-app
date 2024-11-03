@@ -1,7 +1,7 @@
-package agenda.agenda.Repository;
+package com.fran.contacts.repository;
 
-import agenda.agenda.Entities.Contacto;
-import agenda.agenda.Entities.Usuario;
+import com.fran.contacts.entity.Contacto;
+import com.fran.contacts.entity.Usuario;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

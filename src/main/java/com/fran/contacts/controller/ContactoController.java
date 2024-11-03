@@ -1,9 +1,9 @@
-package agenda.agenda.Controller;
+package com.fran.contacts.controller;
 
-import agenda.agenda.Entities.Contacto;
-import agenda.agenda.Entities.Usuario;
-import agenda.agenda.Service.ContactoService;
-import agenda.agenda.Service.UsuarioService;
+import com.fran.contacts.entity.Contacto;
+import com.fran.contacts.entity.Usuario;
+import com.fran.contacts.service.ContactoService;
+import com.fran.contacts.service.UsuarioService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -34,14 +34,14 @@ public class ContactoController {
         this.contactoService = contactoService;
     }
 
-    @GetMapping({"/"})
+    @GetMapping({"/", ""})
     public String redirigirARutaContactos() {
         return "redirect:/contactos";
     }
 
     // Obtencion de todos los contactos
     @GetMapping
-    public String verPaginaDeInicio(Model modelo, @AuthenticationPrincipal UserDetails userDetails) {
+    public String paginaInicio(Model modelo, @AuthenticationPrincipal UserDetails userDetails) {
         if (userDetails == null) {
             return "redirect:/login";
         }
@@ -102,11 +102,11 @@ public class ContactoController {
             return "nuevo";
         }
 
-        Object result = contactoService.actualizarContacto(id, contacto);
-        if (result instanceof Contacto) {
+        try {
+            contactoService.actualizarContacto(id, contacto);
             redirect.addFlashAttribute("msgExito", "El contacto ha sido actualizado correctamente");
-        } else {
-            redirect.addFlashAttribute("msgError", result);
+        } catch (RuntimeException e) {
+            redirect.addFlashAttribute("msgError", e.getMessage());
         }
 
         return "redirect:/contactos";
@@ -115,8 +115,13 @@ public class ContactoController {
     // Elimina un contacto
     @DeleteMapping("/eliminar/{id}")
     public String eliminarContacto(@PathVariable Integer id, RedirectAttributes redirect) {
-        contactoService.eliminarContacto(id);
-        redirect.addFlashAttribute("msgExito", "El contacto ha sido eliminado correctamente");
+        try {
+            contactoService.eliminarContacto(id);
+            redirect.addFlashAttribute("msgExito", "El contacto ha sido eliminado correctamente");
+        } catch (
+                RuntimeException e) {
+            redirect.addFlashAttribute("msgError", e.getMessage());
+        }
         return "redirect:/contactos";
     }
 }

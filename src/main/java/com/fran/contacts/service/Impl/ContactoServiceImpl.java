@@ -1,10 +1,10 @@
-package agenda.agenda.Service.Impl;
+package com.fran.contacts.service.Impl;
 
-import agenda.agenda.Entities.Contacto;
-import agenda.agenda.Entities.Usuario;
-import agenda.agenda.Repository.ContactoRepository;
-import agenda.agenda.Repository.UsuarioRepository;
-import agenda.agenda.Service.ContactoService;
+import com.fran.contacts.entity.Contacto;
+import com.fran.contacts.entity.Usuario;
+import com.fran.contacts.repository.ContactoRepository;
+import com.fran.contacts.repository.UsuarioRepository;
+import com.fran.contacts.service.ContactoService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,20 +27,19 @@ public class ContactoServiceImpl implements ContactoService {
 
     @Override
     public Contacto obtenerPorID(Integer id) {
-        return contactoRepository.getReferenceById(id);
+        return contactoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Contacto no encontrado"));
     }
 
     @Override
     public Contacto guardarContacto(String username, Contacto contacto) {
-        // Obtener el usuario autenticado desde el UserDetails
         Usuario usuario = usuarioRepository.findByEmail(username);
-        contacto.setUsuario(usuario); // Asocia el contacto con el usuario autenticado
-        return contactoRepository.save(contacto); // Guarda el contacto en la base de datos
+        contacto.setUsuario(usuario);
+        return contactoRepository.save(contacto);
     }
 
     @Override
     public Contacto actualizarContacto(Integer id, Contacto contactoActualizado) {
-
         Contacto contactoDB = contactoRepository.getReferenceById(id);
         contactoDB.setNombre(contactoActualizado.getNombre());
         contactoDB.setCelular(contactoActualizado.getCelular());
@@ -51,6 +50,8 @@ public class ContactoServiceImpl implements ContactoService {
 
     @Override
     public void eliminarContacto(Integer id) {
-        contactoRepository.deleteById(id);
+        Contacto contacto = contactoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Contacto no encontrado"));
+        contactoRepository.delete(contacto);
     }
 }

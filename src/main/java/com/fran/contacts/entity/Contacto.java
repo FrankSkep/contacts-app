@@ -1,4 +1,4 @@
-package agenda.agenda.Entities;
+package com.fran.contacts.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;

@@ -1,6 +1,6 @@
-package agenda.agenda.DTO;
+package com.fran.contacts.dto;
 
-public class UsuarioDTO {
+public class RegisterRequest {
 
     private Integer id;
     private String nombre;
@@ -8,7 +8,7 @@ public class UsuarioDTO {
     private String email;
     private String password;
 
-    public UsuarioDTO(Integer id, String nombre, String apelido, String email, String password) {
+    public RegisterRequest(Integer id, String nombre, String apelido, String email, String password) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apelido;
@@ -16,16 +16,16 @@ public class UsuarioDTO {
         this.password = password;
     }
 
-    public UsuarioDTO(String nombre, String apelido, String email, String password) {
+    public RegisterRequest(String nombre, String apelido, String email, String password) {
         this.nombre = nombre;
         this.apellido = apelido;
         this.email = email;
         this.password = password;
     }
     
-    public UsuarioDTO() {}
+    public RegisterRequest() {}
 
-    public UsuarioDTO(String email) {
+    public RegisterRequest(String email) {
         this.email = email;
     }
     

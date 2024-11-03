@@ -1,6 +1,6 @@
-package agenda.agenda.Repository;
+package com.fran.contacts.repository;
 
-import agenda.agenda.Entities.Usuario;
+import com.fran.contacts.entity.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {

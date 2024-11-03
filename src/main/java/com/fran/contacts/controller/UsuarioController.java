@@ -1,8 +1,7 @@
-package agenda.agenda.Controller;
+package com.fran.contacts.controller;
 
-import agenda.agenda.Entities.Usuario;
-import agenda.agenda.Service.UsuarioService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.fran.contacts.entity.Usuario;
+import com.fran.contacts.service.UsuarioService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;

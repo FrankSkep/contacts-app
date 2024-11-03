@@ -1,9 +1,9 @@
-package agenda.agenda.Service.Impl;
+package com.fran.contacts.service.Impl;
 
-import agenda.agenda.DTO.UsuarioDTO;
-import agenda.agenda.Entities.Usuario;
-import agenda.agenda.Repository.UsuarioRepository;
-import agenda.agenda.Service.UsuarioService;
+import com.fran.contacts.dto.RegisterRequest;
+import com.fran.contacts.entity.Usuario;
+import com.fran.contacts.repository.UsuarioRepository;
+import com.fran.contacts.service.UsuarioService;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -29,7 +29,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario guardarUsuario(UsuarioDTO registroDTO) {
+    public Usuario guardarUsuario(RegisterRequest registroDTO) {
         // Verificar si ya existe un usuario con el mismo email
         if (userRepo.findByEmail(registroDTO.getEmail()) != null) {
             throw new IllegalArgumentException("Ya existe un usuario con el mismo correo electrónico.");

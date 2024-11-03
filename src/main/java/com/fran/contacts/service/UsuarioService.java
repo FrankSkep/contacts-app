@@ -1,14 +1,14 @@
-package agenda.agenda.Service;
+package com.fran.contacts.service;
 
-import agenda.agenda.DTO.UsuarioDTO;
-import agenda.agenda.Entities.Usuario;
+import com.fran.contacts.dto.RegisterRequest;
+import com.fran.contacts.entity.Usuario;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface UsuarioService extends UserDetailsService {
 
     Usuario findByEmail(String username);
 
-    Usuario guardarUsuario(UsuarioDTO registroDTO);
+    Usuario guardarUsuario(RegisterRequest registroDTO);
 
     void eliminarUsuario(Integer id);
 }

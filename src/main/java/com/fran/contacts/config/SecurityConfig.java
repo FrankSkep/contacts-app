@@ -1,6 +1,6 @@
-package agenda.agenda.Configuration;
+package com.fran.contacts.config;
 
-import agenda.agenda.Service.UsuarioService;
+import com.fran.contacts.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

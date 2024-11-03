@@ -8,11 +8,11 @@
         <version>3.3.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>agenda</groupId>
-    <artifactId>agenda</artifactId>
+    <groupId>contacts</groupId>
+    <artifactId>contacts-app</artifactId>
     <version>1.0</version>
     <name>agenda</name>
-    <description>Agenda de contactos basica con Spring MVC</description>
+    <description>Aplicacion de contactos basica. MVC</description>
     <url/>
     <licenses>
         <license/>
