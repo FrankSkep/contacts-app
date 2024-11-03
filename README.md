@@ -1,89 +1,54 @@
-# Agenda de Contactos
+# Contacts App
 
-## Descripción
+## Description
 
-Agenda de contactos web desarrollada en Java 21 con Spring Boot 3.3.2, utilizando la arquitectura MVC (
-Modelo-Vista-Controlador).
+A web application for managing contacts, developed with Java, Spring Boot, and MySQL, using the MVC architecture.
 
-## Características
+## Features
 
-- **Autenticación de usuarios** con Spring Security.
-- **Cifrado de contraseñas** utilizando BCrypt.
-- **Gestión de contactos**: Crear, editar y eliminar contactos personales.
-- **Eliminación de cuenta**: Los usuarios pueden eliminar su cuenta y todos sus contactos asociados.
-- **Interfaz responsive**: Construida con Bootstrap y Thymeleaf.
-- **Persistencia de datos**: Implementada con Hibernate y MySQL.
+- **User Authentication**: Basic session-based authentication using Spring Security.
+- **Contact Management**: Create, edit, and delete personal contacts.
+- **Account Deletion**: Users can delete their account and all associated contacts.
+- **Responsive Interface**: Built with Bootstrap and Thymeleaf.
+- **Data Persistence**: Implemented with MySQL and Hibernate.
 
-## Tecnologías
+## Technologies
 
 - Java 21
 - Spring Boot 3.3.2
 - Spring Security
-- BCrypt
 - Hibernate
 - Thymeleaf
 - Bootstrap
 - MySQL
 
-## Instalación
+## Installation
 
-1. Clona el repositorio:
+1. Clone the repository:
     ```sh
-    git clone https://github.com/FrankSkep/Agenda_Contactos.git
+    git clone https://github.com/FrankSkep/contacts-app
     ```
-2. Accede al directorio del proyecto:
+2. Navigate to the project directory:
     ```sh
-    cd Agenda_Contactos
+    cd contacts-app
     ```
-3. Compila el proyecto:
+3. Compile the project:
     ```sh
     mvn clean install
     ```
-4. Crea la base de datos `agenda` en tu MySQL.
+4. Create a database in MySQL.
 
-5. Configura las credenciales de la base de datos en `src/main/resources/application.properties`:
+5. Create a `.env` file in `src/main/resources` with your MySQL credentials:
     ```properties
-    spring.datasource.url=jdbc:mysql://localhost:3306/agenda
-    spring.datasource.username=TU_USUARIO
-    spring.datasource.password=TU_CONTRASEÑA
+    DB_URL=jdbc:mysql://localhost:3306/your_database_name
+    DB_USERNAME=your_mysql_username
+    DB_PASSWORD=your_mysql_password
     ```
 
-## Ejecución
+## Running the Application
 
-1. Inicia la aplicación:
+1. Start the application:
     ```sh
     mvn spring-boot:run
     ```
-2. Abre el navegador en `http://localhost:8080`.
-
-## Estructura del Proyecto
-
-### Controladores
-
-- **`AuthController`**: Maneja autenticación de usuarios.
-- **`ContactoController`**: Gestiona los contactos.
-- **`UsuarioController`**: Maneja operaciones de usuarios.
-
-### Entidades
-
-- **`Contacto`**: Representa un contacto.
-- **`Usuario`**: Representa un usuario.
-
-### Servicios
-
-- **`ContactoService`**: Lógica para la gestión de contactos.
-- **`UsuarioService`**: Lógica para la gestión de usuarios.
-
-### Seguridad
-
-- **`SecurityConfig`**: Configura la seguridad con Spring Security.
-
-### DTOs
-
-- **`UsuarioDTO`**: Data Transfer Object para el registro de usuarios.
-
-## Requisitos Previos
-
-- Java 21
-- Maven
-- MySQL
+2. Open your browser and go to `http://localhost:8090`.
