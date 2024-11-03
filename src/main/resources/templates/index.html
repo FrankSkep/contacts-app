@@ -17,6 +17,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
 
+            <div th:if="${msgError != null}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                [[${msgError}]]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h2>Lista de Contactos</h2>
                 <a href="/contactos/nuevo" class="btn btn-success"><i class="fas fa-user-plus"></i>&nbsp;Añadir Contacto</a>

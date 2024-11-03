@@ -2,6 +2,7 @@ package com.fran.contacts.service.Impl;
 
 import com.fran.contacts.entity.Contacto;
 import com.fran.contacts.entity.Usuario;
+import com.fran.contacts.exception.ContactNotFoundException;
 import com.fran.contacts.repository.ContactoRepository;
 import com.fran.contacts.repository.UsuarioRepository;
 import com.fran.contacts.service.ContactoService;
@@ -28,7 +29,7 @@ public class ContactoServiceImpl implements ContactoService {
     @Override
     public Contacto obtenerPorID(Integer id) {
         return contactoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Contacto no encontrado"));
+                .orElseThrow(() -> new ContactNotFoundException("Contacto no encontrado"));
     }
 
     @Override
@@ -40,7 +41,8 @@ public class ContactoServiceImpl implements ContactoService {
 
     @Override
     public Contacto actualizarContacto(Integer id, Contacto contactoActualizado) {
-        Contacto contactoDB = contactoRepository.getReferenceById(id);
+        Contacto contactoDB = contactoRepository.findById(id)
+                .orElseThrow(() -> new ContactNotFoundException("Contacto no encontrado"));
         contactoDB.setNombre(contactoActualizado.getNombre());
         contactoDB.setCelular(contactoActualizado.getCelular());
         contactoDB.setEmail(contactoActualizado.getEmail());
@@ -51,7 +53,7 @@ public class ContactoServiceImpl implements ContactoService {
     @Override
     public void eliminarContacto(Integer id) {
         Contacto contacto = contactoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Contacto no encontrado"));
+                .orElseThrow(() -> new ContactNotFoundException("Contacto no encontrado"));
         contactoRepository.delete(contacto);
     }
 }

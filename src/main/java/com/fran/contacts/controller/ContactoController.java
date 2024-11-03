@@ -34,7 +34,7 @@ public class ContactoController {
         this.contactoService = contactoService;
     }
 
-    @GetMapping({"/", ""})
+    @GetMapping({"/"})
     public String redirigirARutaContactos() {
         return "redirect:/contactos";
     }
@@ -45,11 +45,11 @@ public class ContactoController {
         if (userDetails == null) {
             return "redirect:/login";
         }
-
         String email = userDetails.getUsername();
-
         Usuario usuario = usuarioService.findByEmail(email);
+
         List<Contacto> contactos = contactoService.findByUsuario(usuario);
+
         modelo.addAttribute("username", email);
         modelo.addAttribute("contactos", contactos);
         return "index";
@@ -73,14 +73,8 @@ public class ContactoController {
         if (bindingResult.hasErrors()) {
             return "nuevo"; // Retorna al formulario si hay errores
         }
-
-        Object result = contactoService.guardarContacto(userDetails.getUsername(), contacto);
-        if (result instanceof Contacto) {
-            redirectAttributes.addFlashAttribute("msgExito", "Contacto guardado exitosamente");
-        } else {
-            redirectAttributes.addFlashAttribute("msgError", result);
-        }
-
+        contactoService.guardarContacto(userDetails.getUsername(), contacto);
+        redirectAttributes.addFlashAttribute("msgExito", "Contacto guardado exitosamente");
         return "redirect:/contactos";
     }
 
@@ -102,12 +96,8 @@ public class ContactoController {
             return "nuevo";
         }
 
-        try {
-            contactoService.actualizarContacto(id, contacto);
-            redirect.addFlashAttribute("msgExito", "El contacto ha sido actualizado correctamente");
-        } catch (RuntimeException e) {
-            redirect.addFlashAttribute("msgError", e.getMessage());
-        }
+        contactoService.actualizarContacto(id, contacto);
+        redirect.addFlashAttribute("msgExito", "El contacto ha sido actualizado correctamente");
 
         return "redirect:/contactos";
     }
@@ -115,13 +105,8 @@ public class ContactoController {
     // Elimina un contacto
     @DeleteMapping("/eliminar/{id}")
     public String eliminarContacto(@PathVariable Integer id, RedirectAttributes redirect) {
-        try {
-            contactoService.eliminarContacto(id);
-            redirect.addFlashAttribute("msgExito", "El contacto ha sido eliminado correctamente");
-        } catch (
-                RuntimeException e) {
-            redirect.addFlashAttribute("msgError", e.getMessage());
-        }
+        contactoService.eliminarContacto(id);
+        redirect.addFlashAttribute("msgExito", "El contacto ha sido eliminado correctamente");
         return "redirect:/contactos";
     }
 }
