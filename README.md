@@ -6,7 +6,7 @@ A web application for managing contacts, developed with Java, Spring Boot, and M
 
 ## Features
 
-- **User Authentication**: Basic session-based authentication using Spring Security.
+- **User Authentication**: Basic Session-based authentication with persistent session cookies using Spring Security.
 - **Contact Management**: Create, edit, and delete personal contacts.
 - **Account Deletion**: Users can delete their account and all associated contacts.
 - **Responsive Interface**: Built with Bootstrap and Thymeleaf.
