@@ -2,7 +2,7 @@
 
 ## Description
 
-A web application for managing contacts, developed with Java, Spring Boot, and MySQL, using the MVC architecture.
+A web application for managing contacts, developed with Java, Spring Boot, and MySQL.
 
 ## Features
 
