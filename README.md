@@ -52,3 +52,9 @@ A web application for managing contacts, developed with Java, Spring Boot, and M
     mvn spring-boot:run
     ```
 2. Open your browser and go to `http://localhost:8090`.
+
+## Licencia
+
+**Este proyecto está licenciado bajo la [GNU Affero General Public License v3.0](https://www.gnu.org/licenses/agpl-3.0.html).**
+
+© 2024 FrankSkep. Para más detalles, consulte el archivo completo [LICENSE](LICENSE).
