@@ -53,8 +53,8 @@ A web application for managing contacts, developed with Java, Spring Boot, and M
     ```
 2. Open your browser and go to `http://localhost:8090`.
 
-## Licencia
+## License
 
-**Este proyecto está licenciado bajo la [GNU Affero General Public License v3.0](https://www.gnu.org/licenses/agpl-3.0.html).**
+**[GNU Affero General Public License v3.0](https://www.gnu.org/licenses/agpl-3.0.html)**.  
 
-© 2024 FrankSkep. Para más detalles, consulte el archivo completo [LICENSE](LICENSE).
+© 2024 FrankSkep. Consult the [LICENSE](LICENSE) file for more information.
